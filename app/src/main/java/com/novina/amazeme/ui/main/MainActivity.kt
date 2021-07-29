@@ -1,7 +1,8 @@
-package com.novina.amazeme
+package com.novina.amazeme.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.novina.amazeme.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

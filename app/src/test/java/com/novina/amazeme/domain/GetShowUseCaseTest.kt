@@ -1,0 +1,67 @@
+package com.novina.amazeme.domain
+
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.whenever
+import com.novina.amazeme.data.model.Result
+import com.novina.amazeme.data.model.Show
+import com.novina.amazeme.data.network.RatingDTO
+import com.novina.amazeme.data.network.ShowDTO
+import com.novina.amazeme.data.network.ShowImageDTO
+import com.novina.amazeme.data.repository.ShowsRepository
+import junit.framework.Assert.assertEquals
+import junit.framework.Assert.assertTrue
+import kotlinx.coroutines.runBlocking
+import org.junit.Test
+import java.lang.Exception
+
+class GetShowUseCaseTest {
+
+    private val showId = 1
+    private val showDTO1 = ShowDTO(
+        id = 1,
+        name = "Show 1",
+        summary = "<p> summary 1 </p>",
+        rating = RatingDTO(average = 1.0),
+        images = ShowImageDTO(
+            medium = "https://medium.image1",
+            original = "https://original.image1"
+        ),
+        genres = listOf("Genre1", "Genre2")
+    )
+
+    private val show1 = Show(
+        id = 1,
+        name = "Show 1",
+        summary = "<p> summary 1 </p>",
+        rating = 1.0,
+        imageUrl = "https://medium.image1",
+        genres = listOf("Genre1", "Genre2")
+    )
+
+    private val showsRepository: ShowsRepository = mock()
+    private val getShowUseCase = GetShowUseCase(showsRepository)
+
+    @Test
+    fun loadShows_withSuccess() = runBlocking {
+        // Given a list of show DTO returned for a specific page
+        whenever(showsRepository.getShow(showId)).thenReturn(Result.Success(showDTO1))
+
+        // When loading show
+        val result = getShowUseCase(showId)
+
+        // Then the result was triggered
+        assertEquals(Result.Success(show1), result)
+    }
+
+    @Test
+    fun loadShows_withError() = runBlocking {
+        // Given that an error is returned for a specific page
+        whenever(showsRepository.getShow(showId)).thenReturn(Result.Error(Exception("error")))
+
+        // When loading show
+        val result = getShowUseCase(showId)
+
+        // Then the result was triggered
+        assertTrue(result is Result.Error)
+    }
+}
