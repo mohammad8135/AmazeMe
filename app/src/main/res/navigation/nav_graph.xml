@@ -23,7 +23,7 @@
             android:id="@+id/action_showDetailFragment_to_showListFragment"
             app:destination="@id/showListFragment" />
         <argument
-            android:name="plantId"
+            android:name="showId"
             app:argType="integer" />
     </fragment>
 </navigation>

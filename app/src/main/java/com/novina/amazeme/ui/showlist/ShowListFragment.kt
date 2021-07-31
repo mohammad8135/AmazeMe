@@ -19,12 +19,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class ShowListFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = ShowListFragment()
-    }
-
     private lateinit var viewModel: ShowListViewModel
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
