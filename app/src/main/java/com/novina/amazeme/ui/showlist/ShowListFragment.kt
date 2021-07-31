@@ -11,8 +11,10 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import com.novina.amazeme.R
+import com.novina.amazeme.databinding.ShowListFragmentBinding
 import com.novina.amazeme.ui.main.ShowListViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -20,12 +22,30 @@ import kotlinx.coroutines.launch
 class ShowListFragment : Fragment() {
 
     private lateinit var viewModel: ShowListViewModel
+    private lateinit var binding: ShowListFragmentBinding
+    private val adapter = ShowListAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.show_list_fragment, container, false)
+        binding = ShowListFragmentBinding.inflate(inflater, container, false).apply {
+            recyclerView.adapter = adapter
+            recyclerView.addItemDecoration(
+                DividerItemDecoration(
+                    recyclerView.context,
+                    DividerItemDecoration.VERTICAL
+                )
+            )
+            recyclerView.addItemDecoration(
+                DividerItemDecoration(
+                    recyclerView.context,
+                    DividerItemDecoration.HORIZONTAL
+                )
+            )
+            subscribeToData()
+        }
+        return binding.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,21 +53,13 @@ class ShowListFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(ShowListViewModel::class.java)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val pagingAdapter = ShowListAdapter()
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
-        recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.HORIZONTAL))
-        recyclerView.adapter = pagingAdapter
+    private fun subscribeToData() {
         lifecycleScope.launch {
             viewModel.state.collectLatest { state ->
-                pagingAdapter.submitData(
+                adapter.submitData(
                     state.pagingData
                 )
             }
         }
     }
-
 }

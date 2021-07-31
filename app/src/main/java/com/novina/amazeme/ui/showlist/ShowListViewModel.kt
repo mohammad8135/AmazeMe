@@ -28,4 +28,5 @@ class ShowListViewModel @Inject constructor(
 
 data class ShowsUiState(
     val pagingData: PagingData<Show> = PagingData.empty()
+
 )
