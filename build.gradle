@@ -24,7 +24,7 @@ buildscript {
         ktxVersion = '1.6.0'
         lifecycleVersion = '2.2.0'
         materialVersion = '1.4.0'
-        navigationVersion = '2.3.3'
+        navigationVersion = '2.3.5'
         okhttpLoggingVersion = '4.9.1'
         pagingVersion = '3.1.0-alpha03'
         recyclerViewVersion = '1.2.0-alpha04'
@@ -38,6 +38,7 @@ buildscript {
         androidxArchVersion = '2.1.0'
         mockitoVersion = '3.3.0'
         mockitoKotlinVersion = '2.0.0-RC3'
+        kotlin_version = '1.5.21'
     }
 
     repositories {
@@ -61,7 +62,6 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        jcenter() // Warning: this repository is going to shut down soon
     }
 }
 

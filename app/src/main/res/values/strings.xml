@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AMaze Me</string>
+    <string name="rating">Ratings</string>
+    <string name="show_image">Show Image</string>
 </resources>

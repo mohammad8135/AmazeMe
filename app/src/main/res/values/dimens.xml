@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer name="show_grid_span_count">3</integer>
+
+    <dimen name="padding_normal">8dp</dimen>
+    <dimen name="padding_large">16dp</dimen>
+
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="rating_star_size">48dp</dimen>
+    <dimen name="padding_extra_small">2dp</dimen>
+    <dimen name="show_list_item_elevation">2dp</dimen>
+    <dimen name="show_list_img_width">120dp</dimen>
+    <dimen name="show_list_img_height">180dp</dimen>
+
+
+</resources>
