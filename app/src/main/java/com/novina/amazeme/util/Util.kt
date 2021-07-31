@@ -12,7 +12,6 @@ fun bindImageFromUrl(view: ImageView, imageUrl: String?) {
         Glide.with(view.context)
             .load(imageUrl)
             .transition(DrawableTransitionOptions.withCrossFade())
-            .centerCrop()
             .into(view)
     } else {
         view.setImageResource(R.drawable.ic_show_placeholder)
