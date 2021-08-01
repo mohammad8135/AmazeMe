@@ -1,4 +1,4 @@
-package com.novina.amazeme.ui.showlist
+package com.novina.amazeme.ui.viewmodel
 
 import com.novina.amazeme.data.model.Show
 

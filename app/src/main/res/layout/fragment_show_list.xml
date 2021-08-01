@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="hasShows"
+            type="boolean" />
+
+        <variable
+            name="isLoading"
             type="boolean" />
 
         <variable
@@ -27,22 +32,14 @@
             android:clipToPadding="false"
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
             app:spanCount="@integer/show_grid_span_count"
-            tools:listitem="@layout/show_list_item" />
+            tools:listitem="@layout/item_grid_show" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical"
-            app:isGone="@{hasShows}">
+        <include
+            android:id="@+id/load_state_error_container"
+            layout="@layout/layout_load_state"
+            app:isGone="@{hasShows}"
+            bind:errorMessage="@{errorMessage}"
+            bind:isLoading="@{isLoading}" />
 
-            <TextView
-                android:id="@+id/tvEmptyShows"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{errorMessage}"
-                android:textAppearance="?attr/textAppearanceHeadline5" />
-
-        </LinearLayout>
     </FrameLayout>
 </layout>

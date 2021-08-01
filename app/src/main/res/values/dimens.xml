@@ -12,6 +12,7 @@
     <dimen name="show_list_item_elevation">2dp</dimen>
     <dimen name="show_list_img_width">120dp</dimen>
     <dimen name="show_list_img_height">180dp</dimen>
+    <dimen name="show_list_tile_height">210dp</dimen>
     <dimen name="show_detail_app_bar_height">600dp</dimen>
     <dimen name="toolbar_elevation">5dp</dimen>
 </resources>

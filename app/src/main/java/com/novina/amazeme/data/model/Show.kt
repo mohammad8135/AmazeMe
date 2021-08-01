@@ -3,7 +3,7 @@ package com.novina.amazeme.data.model
 import android.os.Build
 import android.os.Parcelable
 import android.text.Html
-import com.novina.amazeme.ui.showlist.MAX_RATING
+import com.novina.amazeme.ui.viewmodel.MAX_RATING
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

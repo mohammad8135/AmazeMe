@@ -1,20 +1,19 @@
 package com.novina.amazeme.ui.showlist
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.CombinedLoadStates
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ItemDecoration
-import com.novina.amazeme.R
-import com.novina.amazeme.databinding.ShowListFragmentBinding
-import com.novina.amazeme.ui.main.ShowListViewModel
+import com.novina.amazeme.databinding.FragmentShowListBinding
+import com.novina.amazeme.ui.adapter.ShowListAdapter
+import com.novina.amazeme.ui.adapter.ShowLoadingStateAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -22,30 +21,39 @@ import kotlinx.coroutines.launch
 class ShowListFragment : Fragment() {
 
     private lateinit var viewModel: ShowListViewModel
-    private lateinit var binding: ShowListFragmentBinding
-    private val adapter = ShowListAdapter()
+    private lateinit var binding: FragmentShowListBinding
+    private val pagingAdapter = ShowListAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = ShowListFragmentBinding.inflate(inflater, container, false).apply {
-            recyclerView.adapter = adapter
-            recyclerView.addItemDecoration(
-                DividerItemDecoration(
-                    recyclerView.context,
-                    DividerItemDecoration.VERTICAL
+        binding = FragmentShowListBinding.inflate(inflater, container, false).apply {
+            with(recyclerView) {
+                adapter = pagingAdapter.withLoadStateFooter(
+                    footer = ShowLoadingStateAdapter(pagingAdapter::retry)
                 )
-            )
-            recyclerView.addItemDecoration(
-                DividerItemDecoration(
-                    recyclerView.context,
-                    DividerItemDecoration.HORIZONTAL
+                addItemDecoration(
+                    DividerItemDecoration(
+                        context,
+                        DividerItemDecoration.VERTICAL
+                    )
                 )
-            )
-            subscribeToData()
+                addItemDecoration(
+                    DividerItemDecoration(
+                        context,
+                        DividerItemDecoration.HORIZONTAL
+                    )
+                )
+            }
         }
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        subscribeToViewState()
+        subscribeToLoadingState()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,12 +61,41 @@ class ShowListFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(ShowListViewModel::class.java)
     }
 
-    private fun subscribeToData() {
-        lifecycleScope.launch {
+    private fun subscribeToViewState() {
+        viewLifecycleOwner.lifecycleScope.launch {
             viewModel.state.collectLatest { state ->
-                adapter.submitData(
-                    state.pagingData
-                )
+                pagingAdapter.submitData(state.pagingData)
+            }
+        }
+    }
+
+    private fun subscribeToLoadingState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            pagingAdapter.loadStateFlow.collectLatest { state ->
+                onLoadingStateChanged(state)
+            }
+        }
+    }
+
+    private fun onLoadingStateChanged(state: CombinedLoadStates) {
+        with(binding) {
+            isLoading = false
+            errorMessage = ""
+            hasShows = pagingAdapter.itemCount != 0
+            if (pagingAdapter.itemCount == 0) {
+                when (state.refresh) {
+                    is LoadState.Loading -> {
+                        isLoading = true
+                        errorMessage = ""
+                    }
+                    is LoadState.Error -> {
+                        isLoading = false
+                        loadStateErrorContainer.retryButton.setOnClickListener { pagingAdapter.refresh() }
+                        errorMessage =
+                            (state.refresh as LoadState.Error).error.localizedMessage
+                    }
+                    else -> isLoading = false
+                }
             }
         }
     }

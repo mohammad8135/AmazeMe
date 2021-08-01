@@ -3,7 +3,7 @@ package com.novina.amazeme.util
 import android.os.Build
 import android.text.Html
 import com.novina.amazeme.data.model.Show
-import com.novina.amazeme.ui.showlist.MAX_RATING
+import com.novina.amazeme.ui.viewmodel.MAX_RATING
 
 
 fun Show.ratingString(): String = rating?.let { "$it / $MAX_RATING" } ?: "Not Available"

@@ -11,7 +11,7 @@
 
         <variable
             name="viewModel"
-            type="com.novina.amazeme.ui.showlist.ShowListItemViewModel" />
+            type="com.novina.amazeme.ui.viewmodel.ShowListItemViewModel" />
     </data>
 
     <LinearLayout

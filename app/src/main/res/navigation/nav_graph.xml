@@ -9,7 +9,7 @@
         android:id="@+id/showListFragment"
         android:name="com.novina.amazeme.ui.showlist.ShowListFragment"
         android:label="show_list_fragment"
-        tools:layout="@layout/show_list_fragment" >
+        tools:layout="@layout/fragment_show_list" >
         <action
             android:id="@+id/action_showListFragment_to_showDetailFragment"
             app:destination="@id/showDetailFragment" />
@@ -18,7 +18,7 @@
         android:id="@+id/showDetailFragment"
         android:name="com.novina.amazeme.ui.showdetail.ShowDetailFragment"
         android:label="show_detail_fragment"
-        tools:layout="@layout/show_detail_fragment" >
+        tools:layout="@layout/fragment_show_detail" >
         <action
             android:id="@+id/action_showDetailFragment_to_showListFragment"
             app:destination="@id/showListFragment" />

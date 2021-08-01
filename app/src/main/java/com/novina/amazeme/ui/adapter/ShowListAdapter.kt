@@ -1,4 +1,4 @@
-package com.novina.amazeme.ui.showlist
+package com.novina.amazeme.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,12 +7,12 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.novina.amazeme.R
 import com.novina.amazeme.data.model.Show
-import com.novina.amazeme.ui.showlist.ShowItemViewHolder
+import com.novina.amazeme.ui.viewholder.ShowListItemViewHolder
 
 class ShowListAdapter() :
-    PagingDataAdapter<Show, ShowItemViewHolder>(ShowDiffCallback()) {
+    PagingDataAdapter<Show, ShowListItemViewHolder>(ShowDiffCallback()) {
 
-    override fun onBindViewHolder(holder: ShowItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ShowListItemViewHolder, position: Int) {
         val item = getItem(position)
         if (item == null) {
             holder.bindPlaceHolder()
@@ -21,11 +21,11 @@ class ShowListAdapter() :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShowItemViewHolder {
-        return ShowItemViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShowListItemViewHolder {
+        return ShowListItemViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
-                R.layout.show_list_item,
+                R.layout.item_grid_show,
                 parent,
                 false
             )

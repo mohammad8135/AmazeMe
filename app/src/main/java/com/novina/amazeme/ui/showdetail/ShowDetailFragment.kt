@@ -11,7 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.novina.amazeme.R
-import com.novina.amazeme.databinding.ShowDetailFragmentBinding
+import com.novina.amazeme.databinding.FragmentShowDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -29,9 +29,9 @@ class ShowDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = DataBindingUtil.inflate<ShowDetailFragmentBinding>(
+        val binding = DataBindingUtil.inflate<FragmentShowDetailBinding>(
             inflater,
-            R.layout.show_detail_fragment,
+            R.layout.fragment_show_detail,
             container,
             false
         ).apply {
