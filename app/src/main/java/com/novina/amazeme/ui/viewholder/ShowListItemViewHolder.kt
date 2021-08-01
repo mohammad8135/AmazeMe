@@ -3,9 +3,9 @@ package com.novina.amazeme.ui.viewholder
 import android.view.View
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.novina.amazeme.data.model.Show
+import com.novina.amazeme.model.Show
 import com.novina.amazeme.databinding.ItemGridShowBinding
-import com.novina.amazeme.ui.showlist.ShowListFragmentDirections
+import com.novina.amazeme.ui.ShowListFragmentDirections
 import com.novina.amazeme.ui.viewmodel.ShowListItemViewModel
 
 class ShowListItemViewHolder(private val binding: ItemGridShowBinding) :

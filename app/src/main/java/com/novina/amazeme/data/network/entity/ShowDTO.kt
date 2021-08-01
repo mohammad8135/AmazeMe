@@ -1,7 +1,6 @@
-package com.novina.amazeme.data.network
+package com.novina.amazeme.data.network.entity
 
 import com.google.gson.annotations.SerializedName
-import com.novina.amazeme.data.model.Show
 
 /**
  * Data class that represents a show response from TV Maze.
@@ -18,15 +17,5 @@ data class ShowDTO(
     @field:SerializedName("image") val images: ShowImageDTO?,
     @field:SerializedName("rating") val rating: RatingDTO?,
     @field:SerializedName("genres") val genres: List<String>?,
-)
-
-fun ShowDTO.toShow(page: Int? = 0) = Show(
-    id = id,
-    name = name,
-    summary = summary,
-    imageUrl = images?.medium,
-    genres = genres,
-    rating = rating?.average,
-    page = page
 )
 

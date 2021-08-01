@@ -1,4 +1,4 @@
-package com.novina.amazeme.ui.showlist
+package com.novina.amazeme.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.novina.amazeme.databinding.FragmentShowListBinding
 import com.novina.amazeme.ui.adapter.ShowListAdapter
 import com.novina.amazeme.ui.adapter.ShowLoadingStateAdapter
+import com.novina.amazeme.ui.showlist.ShowListViewModel
+import com.novina.amazeme.util.localizedString
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -91,8 +93,8 @@ class ShowListFragment : Fragment() {
                     is LoadState.Error -> {
                         isLoading = false
                         loadStateErrorContainer.retryButton.setOnClickListener { pagingAdapter.refresh() }
-                        errorMessage =
-                            (state.refresh as LoadState.Error).error.localizedMessage
+                        errorMessage = (state.refresh as LoadState.Error).error.localizedString(resources)
+
                     }
                     else -> isLoading = false
                 }

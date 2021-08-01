@@ -1,6 +1,10 @@
 package com.novina.amazeme.data.network
 
-import com.novina.amazeme.data.model.Show
+import com.novina.amazeme.model.Show
+import com.novina.amazeme.data.network.entity.RatingDTO
+import com.novina.amazeme.data.network.entity.ShowDTO
+import com.novina.amazeme.data.network.entity.ShowImageDTO
+import com.novina.amazeme.data.network.mapper.toModel
 import org.junit.Test
 import org.junit.Assert.assertEquals
 
@@ -24,7 +28,7 @@ class ShowDTOTest {
             genres = listOf("Genre1", "Genre2")
         )
 
-        val show = showDTO.toShow()
+        val show = showDTO.toModel()
 
         val expectedShow = Show(
             id = 1,

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/showListFragment"
-        android:name="com.novina.amazeme.ui.showlist.ShowListFragment"
+        android:name="com.novina.amazeme.ui.ShowListFragment"
         android:label="show_list_fragment"
         tools:layout="@layout/fragment_show_list" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/showDetailFragment"
-        android:name="com.novina.amazeme.ui.showdetail.ShowDetailFragment"
+        android:name="com.novina.amazeme.ui.ShowDetailFragment"
         android:label="show_detail_fragment"
         tools:layout="@layout/fragment_show_detail" >
         <action

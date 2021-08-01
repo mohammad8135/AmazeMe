@@ -2,12 +2,10 @@ package com.novina.amazeme.domain
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.novina.amazeme.data.model.Result
-import com.novina.amazeme.data.model.Show
-import com.novina.amazeme.data.network.toShow
+import com.novina.amazeme.data.network.mapper.toModel
+import com.novina.amazeme.model.Result
+import com.novina.amazeme.model.Show
 import com.novina.amazeme.data.repository.ShowsRepository
-
-private const val STARTING_PAGE_INDEX = 1
 
 class ShowsPagingSource(
     private val repository: ShowsRepository
@@ -19,7 +17,7 @@ class ShowsPagingSource(
                 is Result.Error -> LoadResult.Error(result.exception)
                 is Result.Success -> {
                     LoadResult.Page(
-                        data = result.data.map { it.toShow(page) },
+                        data = result.data.map { it.toModel(page) },
                         prevKey = if (page == STARTING_PAGE_INDEX) null else page - 1,
                         nextKey = page + 1
                     )
@@ -35,5 +33,9 @@ class ShowsPagingSource(
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
                 ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
         }
+    }
+
+    companion object {
+        private const val STARTING_PAGE_INDEX = 1
     }
 }

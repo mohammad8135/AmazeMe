@@ -1,4 +1,4 @@
-package com.novina.amazeme.data.model
+package com.novina.amazeme.model
 
 /**
  * A generic class that holds a value with its loading status.
@@ -7,7 +7,7 @@ package com.novina.amazeme.data.model
 sealed class Result<out T> {
 
     data class Success<out T>(val data: T) : Result<T>()
-    data class Error(val exception: Exception) : Result<Nothing>()
+    data class Error(val exception: Throwable) : Result<Nothing>()
 
     override fun toString(): String {
         return when (this) {

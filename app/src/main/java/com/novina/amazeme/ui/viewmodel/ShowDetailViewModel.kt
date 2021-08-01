@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
-import com.novina.amazeme.data.model.Result
-import com.novina.amazeme.data.model.Show
+import com.novina.amazeme.model.Result
+import com.novina.amazeme.model.Show
 import com.novina.amazeme.data.repository.ShowsRepository
 import com.novina.amazeme.domain.GetShowUseCase
 import dagger.assisted.Assisted

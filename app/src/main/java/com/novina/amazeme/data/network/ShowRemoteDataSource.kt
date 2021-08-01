@@ -1,23 +1,34 @@
 package com.novina.amazeme.data.network
 
+import com.novina.amazeme.data.network.api.ApiService
+import com.novina.amazeme.model.Result
+import com.novina.amazeme.data.network.entity.ShowDTO
+import com.novina.amazeme.data.network.error.HttpRequestException
+import com.novina.amazeme.util.getDetailedError
+import retrofit2.HttpException
 import retrofit2.Response
-import java.io.IOException
-import com.novina.amazeme.data.model.Result
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class ShowRemoteDataSource @Inject constructor(private val service: TvMazeApiService) {
+class ShowRemoteDataSource @Inject constructor(private val service: ApiService) {
     suspend fun loadShows(page: Int): Result<List<ShowDTO>> {
         return try {
             val response = service.loadShows(page)
             getResult(response = response, onError = {
                 Result.Error(
-                    IOException("Error getting shows ${response.code()} ${response.message()}")
+                    HttpRequestException(
+                        message = "${response.code()} ${
+                            response.message()
+                        }",
+                        response = response.toString(),
+                        cause = HttpException(response),
+                        code = response.code()
+                    )
                 )
             })
-        } catch (e: Exception) {
-            Result.Error(IOException("Error getting shows, ${e.message}"))
+        } catch (e: Throwable) {
+            Result.Error(e.getDetailedError())
         }
     }
 

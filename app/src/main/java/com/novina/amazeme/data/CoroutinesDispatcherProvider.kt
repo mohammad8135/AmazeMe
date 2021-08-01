@@ -1,4 +1,4 @@
-package com.novina.amazeme.data.model
+package com.novina.amazeme.data
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers.Default

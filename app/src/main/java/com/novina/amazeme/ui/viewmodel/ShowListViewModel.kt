@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.novina.amazeme.data.model.Show
+import com.novina.amazeme.model.Show
 import com.novina.amazeme.data.repository.ShowsRepository
 import com.novina.amazeme.domain.LoadShowsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

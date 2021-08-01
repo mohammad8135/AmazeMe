@@ -1,9 +1,9 @@
 package com.novina.amazeme.domain
 
-import com.novina.amazeme.data.model.Result
-import com.novina.amazeme.data.model.Show
+import com.novina.amazeme.data.network.mapper.toModel
+import com.novina.amazeme.model.Result
+import com.novina.amazeme.model.Show
 import com.novina.amazeme.data.repository.ShowsRepository
-import com.novina.amazeme.data.network.toShow
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -18,7 +18,7 @@ class GetShowUseCase @Inject constructor(
         return flow {
             val showResult = when (val result = showsRepository.getShow(id)) {
                 is Result.Success -> {
-                    val show = result.data.toShow()
+                    val show = result.data.toModel()
                     Result.Success(show)
                 }
                 is Result.Error -> {

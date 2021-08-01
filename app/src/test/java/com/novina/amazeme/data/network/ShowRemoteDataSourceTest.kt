@@ -7,7 +7,11 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.doAnswer
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
-import com.novina.amazeme.data.model.Result
+import com.novina.amazeme.data.network.api.ApiService
+import com.novina.amazeme.model.Result
+import com.novina.amazeme.data.network.entity.RatingDTO
+import com.novina.amazeme.data.network.entity.ShowDTO
+import com.novina.amazeme.data.network.entity.ShowImageDTO
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody.Companion.toResponseBody
 import org.junit.Assert.assertEquals
@@ -42,7 +46,7 @@ class ShowRemoteDataSourceTest {
 
     private val shows = listOf(showDTO1, showDTO2)
 
-    private val service: TvMazeApiService = mock()
+    private val service: ApiService = mock()
     private val dataSource = ShowRemoteDataSource(service)
     private val errorResponseBody = "Error".toResponseBody("".toMediaTypeOrNull())
 

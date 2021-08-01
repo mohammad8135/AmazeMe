@@ -5,7 +5,7 @@
 
     <data>
 
-        <import type="com.novina.amazeme.data.model.ShowKt" />
+        <import type="com.novina.amazeme.util.ExtensionsKt" />
 
         <variable
             name="viewModel"
@@ -99,7 +99,7 @@
                     style="@style/GenreTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{ShowKt.genreString(viewModel.state.show)}"
+                    android:text="@{ExtensionsKt.genreString(viewModel.state.show)}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imgStar"
                     tools:text="Genre" />
@@ -120,7 +120,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/rating"
-                    android:text="@{ShowKt.ratingString(viewModel.state.show)}"
+                    android:text="@{ExtensionsKt.ratingString(viewModel.state.show)}"
                     app:layout_constraintBottom_toBottomOf="@+id/imgStar"
                     app:layout_constraintStart_toEndOf="@+id/imgStar"
                     app:layout_constraintTop_toTopOf="@+id/imgStar"
@@ -146,7 +146,7 @@
                             style="@style/SummaryTextStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@{ShowKt.summaryString(viewModel.state.show)}"
+                            android:text="@{ExtensionsKt.summaryString(viewModel.state.show)}"
                             tools:text="Summary" />
                     </LinearLayout>
                 </ScrollView>

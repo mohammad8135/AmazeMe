@@ -1,7 +1,7 @@
 package com.novina.amazeme.data.repository
 
-import com.novina.amazeme.data.model.Result
-import com.novina.amazeme.data.network.ShowDTO
+import com.novina.amazeme.model.Result
+import com.novina.amazeme.data.network.entity.ShowDTO
 import com.novina.amazeme.data.network.ShowRemoteDataSource
 import javax.inject.Inject
 import javax.inject.Singleton

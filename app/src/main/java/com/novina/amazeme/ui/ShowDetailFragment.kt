@@ -1,4 +1,4 @@
-package com.novina.amazeme.ui.showdetail
+package com.novina.amazeme.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,6 +12,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.novina.amazeme.R
 import com.novina.amazeme.databinding.FragmentShowDetailBinding
+import com.novina.amazeme.ui.showdetail.ShowDetailViewModel
+import com.novina.amazeme.ui.showdetail.ShowDetailViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -21,7 +23,7 @@ class ShowDetailFragment : Fragment() {
     @Inject
     lateinit var showDetailViewModelFactory: ShowDetailViewModelFactory
     private val args: ShowDetailFragmentArgs by navArgs()
-    private val showDetailViewModel: ShowDetailViewModel  by viewModels {
+    private val showDetailViewModel: ShowDetailViewModel by viewModels {
         ShowDetailViewModel.provideFactory(showDetailViewModelFactory, args.showId)
     }
 

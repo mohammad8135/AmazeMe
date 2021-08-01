@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.novina.amazeme.R
-import com.novina.amazeme.data.model.Show
+import com.novina.amazeme.model.Show
 import com.novina.amazeme.ui.viewholder.ShowListItemViewHolder
 
 class ShowListAdapter() :

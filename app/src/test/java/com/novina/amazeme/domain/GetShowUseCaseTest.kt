@@ -2,17 +2,16 @@ package com.novina.amazeme.domain
 
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
-import com.novina.amazeme.data.model.Result
-import com.novina.amazeme.data.model.Show
-import com.novina.amazeme.data.network.RatingDTO
-import com.novina.amazeme.data.network.ShowDTO
-import com.novina.amazeme.data.network.ShowImageDTO
+import com.novina.amazeme.data.network.entity.RatingDTO
+import com.novina.amazeme.data.network.entity.ShowDTO
+import com.novina.amazeme.data.network.entity.ShowImageDTO
 import com.novina.amazeme.data.repository.ShowsRepository
+import com.novina.amazeme.model.Result
+import com.novina.amazeme.model.Show
 import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertTrue
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
-import java.lang.Exception
 
 class GetShowUseCaseTest {
 

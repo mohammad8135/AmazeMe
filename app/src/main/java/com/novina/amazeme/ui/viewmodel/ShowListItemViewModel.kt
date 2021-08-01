@@ -1,6 +1,6 @@
 package com.novina.amazeme.ui.viewmodel
 
-import com.novina.amazeme.data.model.Show
+import com.novina.amazeme.model.Show
 
 const val MAX_RATING = 10
 
