@@ -50,4 +50,8 @@
     <style name="TextAppearance.AmazeMe.Toolbar.Text" parent="TextAppearance.MaterialComponents.Headline5" >
         <item name="android:textColor">@color/yellow_700</item>
     </style>
+
+    <style name="ShowListActionbarStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/yellow_700</item>
+    </style>
 </resources>
