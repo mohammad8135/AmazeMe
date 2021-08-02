@@ -52,7 +52,7 @@ class ShowRemoteDataSourceTest {
 
 
     @Test
-    fun loadShows_withSuccess() = runBlocking {
+    fun `loadShows withSuccess`() = runBlocking {
         // Given that the service responds with success
         withShowsSuccess(1, shows)
 
@@ -66,7 +66,7 @@ class ShowRemoteDataSourceTest {
     }
 
     @Test
-    fun loadShows_withError() = runBlocking {
+    fun `loadShows withError`() = runBlocking {
         // Given that the service responds with error
         withShowsError(1)
 
@@ -78,7 +78,7 @@ class ShowRemoteDataSourceTest {
     }
 
     @Test
-    fun loadShows_withException() = runBlocking {
+    fun `loadShows withException`() = runBlocking {
         // Given that the service throws an exception
         doAnswer { throw UnknownHostException() }
             .whenever(service).loadShows(1)

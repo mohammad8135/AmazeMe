@@ -11,7 +11,7 @@ import org.junit.Assert.assertEquals
 class ShowDTOTest {
 
     @Test
-    fun show_converted() {
+    fun `show converted`() {
         val imagesDTO = ShowImageDTO(
             medium = "https://medium.image",
             original = "https://original.image"

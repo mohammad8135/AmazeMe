@@ -11,7 +11,6 @@ import junit.framework.TestCase.*
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Test
-import java.io.IOException
 
 class ShowsRepositoryTest {
 
@@ -46,7 +45,7 @@ class ShowsRepositoryTest {
 
 
     @Test
-    fun loadShows_withSuccess() = runBlocking {
+    fun `loadShows withSuccess`() = runBlocking {
         // Given a list of shows returned for a specific page
         whenever(dataSource.loadShows(1)).thenReturn(Result.Success(shows))
 
@@ -58,9 +57,9 @@ class ShowsRepositoryTest {
     }
 
     @Test
-    fun loadShows_withError() = runBlocking {
+    fun `loadShows withError`() = runBlocking {
         // Given that an error is returned for a specific page
-        val result = Result.Error(IOException("error"))
+        val result = Result.Error(Throwable("error"))
         whenever(dataSource.loadShows(1)).thenReturn(result)
 
         // When loading shows
@@ -71,7 +70,7 @@ class ShowsRepositoryTest {
     }
 
     @Test
-    fun getShow_whenLoadSucceeded() = runBlocking {
+    fun `getShow whenLoadSucceeded`() = runBlocking {
         // Given that a load has been performed successfully and data cached
         whenever(dataSource.loadShows(1)).thenReturn(Result.Success(shows))
         repository.loadShows(1)
@@ -86,9 +85,9 @@ class ShowsRepositoryTest {
     }
 
     @Test
-    fun getShow_whenLoadFailed() = runBlocking {
+    fun `getShow whenLoadFailed`() = runBlocking {
         // Given that a search fails so no data is cached
-        whenever(dataSource.loadShows(1)).thenReturn(Result.Error(IOException("Error")))
+        whenever(dataSource.loadShows(1)).thenReturn(Result.Error(Throwable("Error")))
         repository.loadShows(1)
 
         // When getting a show by id

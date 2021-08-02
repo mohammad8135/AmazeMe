@@ -29,7 +29,7 @@ class ShowListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentShowListBinding.inflate(inflater, container, false).apply {
             with(recyclerView) {
                 adapter = pagingAdapter.withLoadStateFooter(

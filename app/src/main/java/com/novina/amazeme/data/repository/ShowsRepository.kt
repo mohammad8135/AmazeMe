@@ -28,7 +28,7 @@ class ShowsRepository @Inject constructor(private val remoteDataSource: ShowRemo
         return if (show != null) {
             Result.Success(show)
         } else {
-            Result.Error(IllegalStateException("show $id not cached"))
+            Result.Error(throwable = Throwable("show $id not cached"))
         }
     }
 

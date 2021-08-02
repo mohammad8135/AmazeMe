@@ -1,43 +1,24 @@
 package com.novina.amazeme.domain
 
+import androidx.paging.AsyncPagingDataDiffer
+import androidx.paging.PagingData
+import androidx.recyclerview.widget.ListUpdateCallback
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.novina.amazeme.model.Show
-import com.novina.amazeme.data.network.entity.RatingDTO
-import com.novina.amazeme.data.network.entity.ShowDTO
-import com.novina.amazeme.data.network.entity.ShowImageDTO
-import com.novina.amazeme.data.repository.ShowsRepository
-import kotlinx.coroutines.runBlocking
-import org.junit.Test
-import com.novina.amazeme.model.Result
+import com.novina.amazeme.ui.adapter.ShowListAdapter
 import junit.framework.TestCase.assertEquals
-import java.io.IOException
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.test.*
+import org.junit.After
+import org.junit.Before
+import org.junit.Test
 
 
 class LoadShowsUseCaseTest {
-    private val showDTO1 = ShowDTO(
-        id = 1,
-        name = "Show 1",
-        summary = "<p> summary 1 </p>",
-        rating = RatingDTO(average = 1.0),
-        images = ShowImageDTO(
-            medium = "https://medium.image1",
-            original = "https://original.image1"
-        ),
-        genres = listOf("Genre1", "Genre2")
-    )
-
-    private val showDTO2 = ShowDTO(
-        id = 2,
-        name = "Show 2",
-        summary = "<p> summary 2 </p>",
-        rating = RatingDTO(average = 2.0),
-        images = ShowImageDTO(
-            medium = "https://medium.image2",
-            original = "https://original.image2"
-        ),
-        genres = listOf("Genre11", "Genre22")
-    )
 
     private val show1 = Show(
         id = 1,
@@ -57,38 +38,51 @@ class LoadShowsUseCaseTest {
         imageUrl = "https://medium.image2",
         genres = listOf("Genre11", "Genre22"),
         page = 1
-
     )
 
-    private val showDTOs = listOf(showDTO1, showDTO2)
     private val shows = listOf(show1, show2)
+    private val loadShowsUseCase: LoadShowsUseCase = mock()
 
-    private val showsRepository: ShowsRepository = mock()
-    private val loadShowsUseCase = LoadShowsUseCase(showsRepository)
+    @ExperimentalCoroutinesApi
+    private val testDispatcher = TestCoroutineDispatcher()
 
-    @Test
-    fun loadShows_withSuccess() = runBlocking {
-        // Given a list of show DTO returned for a specific page
-        val expected = Result.Success(showDTOs)
-        whenever(showsRepository.loadShows(1)).thenReturn(expected)
+    @ExperimentalCoroutinesApi
+    private val testScope = TestCoroutineScope(testDispatcher)
 
-        // When loading shows
-        val result = loadShowsUseCase(1)
-
-        // Then the result was triggered
-        assertEquals(Result.Success(shows), result)
+    @ExperimentalCoroutinesApi
+    @Before
+    fun setUp() {
+        Dispatchers.setMain(testDispatcher)
     }
 
+    @ExperimentalCoroutinesApi
+    @After
+    fun tearDown() {
+        Dispatchers.resetMain()
+    }
+
+    @ExperimentalCoroutinesApi
     @Test
-    fun loadShows_withError() = runBlocking {
-        // Given that an error is returned for a specific page
-        val expected = Result.Error(IOException("error"))
-        whenever(showsRepository.loadShows(2)).thenReturn(expected)
+    fun `loadShows withSuccess`() = testScope.runBlockingTest {
+        whenever(loadShowsUseCase.invoke(1)).thenReturn(flow { emit(PagingData.from(shows)) })
+        val result = loadShowsUseCase(1).first()
 
-        // When loading shows
-        val result = loadShowsUseCase(2)
+        val differ = AsyncPagingDataDiffer(
+            diffCallback = ShowListAdapter.ShowDiffCallback(),
+            updateCallback = FakeListCallback(),
+            workerDispatcher = Dispatchers.Main
+        )
 
+        differ.submitData(result)
+        advanceUntilIdle()
         // Then the result was triggered
-        assertEquals(expected, result)
+        assertEquals(shows, differ.snapshot().items)
+    }
+
+    class FakeListCallback : ListUpdateCallback {
+        override fun onChanged(position: Int, count: Int, payload: Any?) {}
+        override fun onMoved(fromPosition: Int, toPosition: Int) {}
+        override fun onInserted(position: Int, count: Int) {}
+        override fun onRemoved(position: Int, count: Int) {}
     }
 }

@@ -6,10 +6,12 @@ import com.novina.amazeme.data.network.entity.RatingDTO
 import com.novina.amazeme.data.network.entity.ShowDTO
 import com.novina.amazeme.data.network.entity.ShowImageDTO
 import com.novina.amazeme.data.repository.ShowsRepository
+import com.novina.amazeme.domain.util.getFlow
 import com.novina.amazeme.model.Result
 import com.novina.amazeme.model.Show
 import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertTrue
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 
@@ -40,27 +42,27 @@ class GetShowUseCaseTest {
     private val showsRepository: ShowsRepository = mock()
     private val getShowUseCase = GetShowUseCase(showsRepository)
 
+
     @Test
-    fun loadShows_withSuccess() = runBlocking {
+    fun `loadShows withSuccess`() = runBlocking {
         // Given a list of show DTO returned for a specific page
         whenever(showsRepository.getShow(showId)).thenReturn(Result.Success(showDTO1))
 
         // When loading show
-        val result = getShowUseCase(showId)
+        val result = getShowUseCase(showId).first()
 
         // Then the result was triggered
-        assertEquals(Result.Success(show1), result)
+        assertEquals( getFlow(Result.Success(show1)).first(), result)
     }
 
     @Test
-    fun loadShows_withError() = runBlocking {
+    fun `loadShows withError`() = runBlocking {
         // Given that an error is returned for a specific page
-        whenever(showsRepository.getShow(showId)).thenReturn(Result.Error(Exception("error")))
-
+        whenever(showsRepository.getShow(showId)).thenReturn(Result.Error(Throwable("error")))
         // When loading show
-        val result = getShowUseCase(showId)
+        val result = getShowUseCase(showId).first()
 
-        // Then the result was triggered
         assertTrue(result is Result.Error)
     }
+
 }

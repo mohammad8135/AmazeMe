@@ -4,9 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.novina.amazeme.model.Show
-import com.novina.amazeme.data.repository.ShowsRepository
 import com.novina.amazeme.domain.LoadShowsUseCase
+import com.novina.amazeme.model.Show
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -16,10 +15,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ShowListViewModel @Inject constructor(
-    showsRepository: ShowsRepository
+    loadShowsUseCase: LoadShowsUseCase
 ) : ViewModel() {
 
-    val state: StateFlow<ShowsUiState> = LoadShowsUseCase(showsRepository).invoke(1)
+    val state: StateFlow<ShowsUiState> = loadShowsUseCase.invoke(1)
         .cachedIn(viewModelScope)
         .map { pagingData: PagingData<Show> -> ShowsUiState(pagingData) }
         .stateIn(
