@@ -38,6 +38,7 @@ Demo
 ## Architecture
 - This app inspired by Google's recommended [MVVM (Model View View-Model) - Repository](https://developer.android.com/jetpack/docs/guide#recommended-app-arch) architecture, repository pattern. In addition, it it has a component called domain which wrap the use cases that supported. It makes viewModels cleaner and defines data flow better.
 
-Overview of the application architecture 
+Overview of the application architecture
+
 ![alt text](./demo/architecture.png "Architecture Overview")
 
