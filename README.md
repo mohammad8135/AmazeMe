@@ -1,13 +1,14 @@
 
-## Built With 🛠
-
-Amaze Me in a glance\
+Amaze Me in a glance
 
 ![alt text](./demo/showlist.png "Show List") ![alt text](./demo/showdetail.png "Show Detail") ![alt text](./demo/showdetailscrolled.png "Show Detail Scrolled") ![alt text](./demo/showlistoffline.png "Show List Offline") 
 
-Demo\
+Demo
+
 ![alt text](./demo/demo.gif "Demo") 
 
+
+## Built With 🛠
 
 - Android Studio 4.2.2+
 - [Kotlin](https://kotlinlang.org/)
@@ -21,7 +22,6 @@ Demo\
   - [Paging v3](https://developer.android.com/topic/libraries/architecture/paging/v3-overview) - The Paging library helps you load and display pages of data from a larger dataset from local storage or over network.
 - [Dependency Injection](https://developer.android.com/training/dependency-injection)
   - [Dagger Hilt](https://dagger.dev/hilt/) - Standard library to incorporate Dagger dependency injection into an Android application.
-
 
 - Networking
   - [Retrofit](https://square.github.io/retrofit/) - A type-safe HTTP client for Android and Java.
@@ -39,5 +39,5 @@ Demo\
 - This app inspired by Google's recommended [MVVM (Model View View-Model) - Repository](https://developer.android.com/jetpack/docs/guide#recommended-app-arch) architecture, repository pattern. In addition, it it has a component called domain which wrap the use cases that supported. It makes viewModels cleaner and defines data flow better.
 
 Overview of the application architecture 
-![alt text](https://github.com/mohammad8135/AmazeMe/tree/develop/demo/architecture.png "Architecture Overview")
+![alt text](./demo/architecture.png "Architecture Overview")
 
