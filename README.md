@@ -1,10 +1,11 @@
 
 ## Built With 🛠
 
-- Amaze Me in a glance
-![alt text](./demo/showlist.png "Show List") | ![alt text](./demo/showdetail.png "Show Detail") | ![alt text](./demo/showdetailscrolled.png "Show Detail Scrolled") | ![alt text](./demo/showlistoffline.png "Show List Offline") 
+Amaze Me in a glance\
 
-- Demo
+![alt text](./demo/showlist.png "Show List") ![alt text](./demo/showdetail.png "Show Detail") ![alt text](./demo/showdetailscrolled.png "Show Detail Scrolled") ![alt text](./demo/showlistoffline.png "Show List Offline") 
+
+Demo\
 ![alt text](./demo/demo.gif "Demo") 
 
 
