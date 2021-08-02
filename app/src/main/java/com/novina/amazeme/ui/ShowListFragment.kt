@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.novina.amazeme.databinding.FragmentShowListBinding
 import com.novina.amazeme.ui.adapter.ShowListAdapter
 import com.novina.amazeme.ui.adapter.ShowLoadingStateAdapter
-import com.novina.amazeme.ui.showlist.ShowListViewModel
+import com.novina.amazeme.ui.viewmodel.ShowListViewModel
 import com.novina.amazeme.util.localizedString
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest

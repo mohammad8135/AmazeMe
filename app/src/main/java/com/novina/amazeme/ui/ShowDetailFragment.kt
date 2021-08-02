@@ -12,8 +12,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.novina.amazeme.R
 import com.novina.amazeme.databinding.FragmentShowDetailBinding
-import com.novina.amazeme.ui.showdetail.ShowDetailViewModel
-import com.novina.amazeme.ui.showdetail.ShowDetailViewModelFactory
+import com.novina.amazeme.ui.viewmodel.ShowDetailViewModel
+import com.novina.amazeme.ui.viewmodel.ShowDetailViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

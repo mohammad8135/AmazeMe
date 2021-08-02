@@ -1,4 +1,4 @@
-package com.novina.amazeme.ui.showlist
+package com.novina.amazeme.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

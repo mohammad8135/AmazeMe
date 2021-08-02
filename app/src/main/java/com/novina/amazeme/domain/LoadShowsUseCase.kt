@@ -3,7 +3,7 @@ package com.novina.amazeme.domain
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.novina.amazeme.data.pagings.source.ShowsPagingSource
+import com.novina.amazeme.data.pagingsource.ShowsPagingSource
 import com.novina.amazeme.data.repository.ShowsRepository
 import com.novina.amazeme.model.Show
 import kotlinx.coroutines.flow.Flow
@@ -20,7 +20,7 @@ class LoadShowsUseCase @Inject constructor(
     operator fun invoke(page: Int): Flow<PagingData<Show>> {
         return Pager(
             config = PagingConfig(
-                pageSize = NETWORK_PAGE_SIZE,
+                pageSize = page,
                 enablePlaceholders = false
             ),
             pagingSourceFactory = { ShowsPagingSource(repository) }

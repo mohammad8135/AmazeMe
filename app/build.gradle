@@ -44,6 +44,14 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+}
+
+configurations.all {
+    resolutionStrategy {
+        force 'androidx.test:monitor:1.4.0'
+
+    }
 }
 
 dependencies {
@@ -88,16 +96,9 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$rootProject.navigationVersion"
 
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$rootProject.coroutinesVersion"
+    androidTestImplementation "androidx.arch.core:core-testing:$rootProject.androidxArchVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"
 
-//    androidTestImplementation "androidx.arch.core:core-testing:$rootProject.androidxArchVersion"
-//    androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"
-//    androidTestImplementation "androidx.test:rules:$rootProject.testRulesVersion"
-//    androidTestImplementation "androidx.test:runner:$rootProject.testRunnerVersion"
-//    androidTestImplementation "androidx.test.uiautomator:uiautomator:$rootProject.uiAutomatorVersion"
-//    androidTestImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$rootProject.mockitoKotlinVersion"
-//    androidTestImplementation "com.squareup.retrofit2:retrofit-mock:$rootProject.retrofitVersion"
-//    androidTestImplementation "org.mockito:mockito-android:$rootProject.mockitoVersion"
-//    androidTestImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
 }
 
 kapt {

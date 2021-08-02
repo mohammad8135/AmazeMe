@@ -1,4 +1,4 @@
-package com.novina.amazeme.ui.showdetail
+package com.novina.amazeme.ui.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

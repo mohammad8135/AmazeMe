@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.novina.amazeme.ui.showdetail.ShowDetailViewModel" />
+            type="com.novina.amazeme.ui.viewmodel.ShowDetailViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
