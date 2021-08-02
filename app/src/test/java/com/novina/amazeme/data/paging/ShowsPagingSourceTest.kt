@@ -1,4 +1,4 @@
-package com.novina.amazeme.domain
+package com.novina.amazeme.data.paging
 
 import androidx.paging.PagingSource
 import com.nhaarman.mockitokotlin2.mock
@@ -6,6 +6,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.novina.amazeme.data.network.entity.RatingDTO
 import com.novina.amazeme.data.network.entity.ShowDTO
 import com.novina.amazeme.data.network.entity.ShowImageDTO
+import com.novina.amazeme.data.pagings.source.ShowsPagingSource
 import com.novina.amazeme.data.repository.ShowsRepository
 import com.novina.amazeme.model.Result
 import com.novina.amazeme.model.Show

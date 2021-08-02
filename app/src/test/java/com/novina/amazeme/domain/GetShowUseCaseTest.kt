@@ -6,7 +6,7 @@ import com.novina.amazeme.data.network.entity.RatingDTO
 import com.novina.amazeme.data.network.entity.ShowDTO
 import com.novina.amazeme.data.network.entity.ShowImageDTO
 import com.novina.amazeme.data.repository.ShowsRepository
-import com.novina.amazeme.domain.util.getFlow
+import com.novina.amazeme.util.getFlow
 import com.novina.amazeme.model.Result
 import com.novina.amazeme.model.Show
 import junit.framework.Assert.assertEquals

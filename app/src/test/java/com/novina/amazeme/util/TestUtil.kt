@@ -1,4 +1,4 @@
-package com.novina.amazeme.domain.util
+package com.novina.amazeme.util
 
 import kotlinx.coroutines.flow.flow
 

@@ -1,4 +1,4 @@
-package com.novina.amazeme.domain
+package com.novina.amazeme.data.pagings.source
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
@@ -7,6 +7,7 @@ import com.novina.amazeme.model.Result
 import com.novina.amazeme.model.Show
 import com.novina.amazeme.data.repository.ShowsRepository
 import javax.inject.Inject
+import javax.inject.Singleton
 
 class ShowsPagingSource @Inject constructor(
     private val repository: ShowsRepository
