@@ -2,10 +2,10 @@
 ## Built With 🛠
 
 - Amaze Me in a glance
-![alt text](https://github.com/mohammad8135/AmazeMe/tree/develop/demo/showlist.png "Show List") | ![alt text](https://github.com/mohammad8135/AmazeMe/tree/develop/demo/showdetail.png "Show Detail") | ![alt text](https://github.com/mohammad8135/AmazeMe/tree/develop/demo/showdetailscrolled.png "Show Detail Scrolled") | ![alt text](https://github.com/mohammad8135/AmazeMe/tree/develop/demo/showlistoffline.png "Show List Offline") 
+![alt text](./demo/showlist.png "Show List") | ![alt text](./demo/showdetail.png "Show Detail") | ![alt text](./demo/showdetailscrolled.png "Show Detail Scrolled") | ![alt text](./demo/showlistoffline.png "Show List Offline") 
 
 - Demo
-![alt text](https://github.com/mohammad8135/AmazeMe/tree/develop/demo/demo.gif "Demo") 
+![alt text](./demo/demo.gif "Demo") 
 
 
 - Android Studio 4.2.2+
