@@ -5,4 +5,5 @@
     <string name="tap_to_reload">Tap to reload</string>
     <string name="connection_error_message">It seems you are offline, please check your internet connection and try again.</string>
     <string name="generic_network_error">Loading has failed due to network error. Detail Error message: \\n%1$s</string>
+    <string name="no_internet_available_msg_snackbar">No internet connection available.</string>
 </resources>
